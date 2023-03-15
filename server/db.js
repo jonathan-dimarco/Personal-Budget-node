@@ -36,6 +36,8 @@ let envelopes = [
 },
 ];
 
+let idCounter = envelopes.length;
+
 //helper functions
 
 
