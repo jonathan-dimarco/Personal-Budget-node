@@ -1,4 +1,3 @@
-let totalBudget = 0;
 
 let envelopes = [
 {   id: 1,
@@ -36,8 +35,5 @@ let envelopes = [
 },
 ];
 
-let idCounter = envelopes.length;
-
-//helper functions
-
+module.exports = {envelopesdb};
 
