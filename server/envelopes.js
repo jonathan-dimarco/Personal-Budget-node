@@ -1,10 +1,27 @@
-const express = require('express');
-const router = express.Router()
+const envelopesRouter = require('express').Router();
+const envelopes = require("./db");
 
-const {
-    addToDatabase
-} = require('./helpers');
+const e = require('cors');
+const { getAllEnvelopes, addEnvelope }= require('./controllers');
 
-router.post('/', addToDatabase)
 
-module.exports = router;
+
+envelopesRouter.get('/', (req, res, next) => {
+    const database = getAllEnvelopes();
+    res.status(200).send(database);
+})
+
+
+envelopesRouter.post("/", (req, res, next) => {
+    const newEnvelope = req.body;
+    console.log(newEnvelope);
+    const envelopeToAdd = addEnvelope(newEnvelope);
+    res.send(newEnvelope);
+});
+
+
+
+
+
+
+module.exports = envelopesRouter;
