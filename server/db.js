@@ -1,5 +1,5 @@
 
-let envelopes = [
+const envelopes = [
 {   id: 1,
     name: "rent",
     budget: 0,
@@ -35,5 +35,5 @@ let envelopes = [
 },
 ];
 
-module.exports = {envelopesdb};
+module.exports = envelopes;
 
