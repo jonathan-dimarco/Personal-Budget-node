@@ -20,4 +20,12 @@ const addEnvelope = (instance) => {
   envelopes.push(newEnvelope);
 }
 
-module.exports = { getAllEnvelopes, addEnvelope};
+const getEnvelopeById = (arr, searchId) => {
+  const id = Number(searchId);
+  const envelope = arr.find((item) => item.id === parseInt(searchId));
+  return envelope;
+}
+
+
+
+module.exports = { getAllEnvelopes, addEnvelope, getEnvelopeById};
