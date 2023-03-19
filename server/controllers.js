@@ -23,24 +23,18 @@ const addEnvelope = (instance) => {
 const getEnvelopeById = (arr, searchId) => {
   const id = Number(searchId);
   const envelope = arr.find((item) => item.id === id);
+  if(!envelope) {
+    console.log("Envelope not Found!")
+  } else {
   return envelope;
 }
-
-
-const findById = (data, recordId) => {
-  const record = data.find((item) => item.id === parseInt(recordId));
-
-  if (!record) {
-    console.log("Record not found");
-  }
-  return record;
 }
 
 const updateEnvelope = (arr, id, instance) => {
     const { name, budget } = instance;
-    const envelope = findById(envelopes, id);
+    const envelope = getEnvelopeById(envelopes, id);
     if (!envelope) {
-      return "Envelope Not Found";
+      return false;
       } else {
     envelope.name = name;
     envelope.budget = budget;

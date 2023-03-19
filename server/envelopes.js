@@ -32,10 +32,11 @@ envelopesRouter.post("/", (req, res, next) => {
 
 envelopesRouter.put("/:id", (req, res, next) => {
 const updatedEnvelope = updateEnvelope(envelopes, req.params.id, req.body);
-if(updatedEnvelope) {
-    res.status(201).send(updatedEnvelope);
+console.log(updatedEnvelope);
+if(!updatedEnvelope) {
+    res.sendStatus(404);
 } else {
-    res.sendStatus(500)
+    res.status(201).send(updatedEnvelope);
 }
 })
 
