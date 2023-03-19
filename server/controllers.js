@@ -32,7 +32,7 @@ const getEnvelopeById = (arr, searchId) => {
 
 const updateEnvelope = (arr, id, instance) => {
     const { name, budget } = instance;
-    const envelope = getEnvelopeById(envelopes, id);
+    const envelope = getEnvelopeById(arr, id);
     if (!envelope) {
       return false;
       } else {
@@ -42,7 +42,18 @@ const updateEnvelope = (arr, id, instance) => {
   }
 };
 
+const deleteEnvelope = (arr, id) => {
+  const index = arr.findIndex(function (item) {
+    return item.id === parseInt(id);
+  });
+  console.log(index);
+  if (index === -1) {
+    return "Invalid index";
+  } else {
+  arr.splice(index, 1);}
+  return arr;
+
+}
 
 
-
-module.exports = { getAllEnvelopes, addEnvelope, getEnvelopeById, updateEnvelope };
+module.exports = { getAllEnvelopes, addEnvelope, getEnvelopeById, updateEnvelope, deleteEnvelope };

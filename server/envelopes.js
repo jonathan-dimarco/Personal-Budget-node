@@ -2,9 +2,7 @@ const envelopesRouter = require('express').Router();
 const envelopes = require("./db");
 
 const e = require('cors');
-const { getAllEnvelopes, addEnvelope, getEnvelopeById, updateEnvelope }= require('./controllers');
-
-
+const { getAllEnvelopes, addEnvelope, getEnvelopeById, updateEnvelope, deleteEnvelope }= require('./controllers');
 
 envelopesRouter.get('/', (req, res, next) => {
     const database = getAllEnvelopes();
@@ -38,6 +36,15 @@ if(!updatedEnvelope) {
 } else {
     res.status(201).send(updatedEnvelope);
 }
+})
+
+envelopesRouter.delete("/:id", (req, res, next) => {
+    const updatedEnvelopes = deleteEnvelope(envelopes, req.params.id);
+    if(updatedEnvelopes === "Invalid index"){
+        res.status(500).send("Envelope Not Found!");
+    } else {
+    res.status(200).send(updatedEnvelopes);
+    }
 })
 
 
