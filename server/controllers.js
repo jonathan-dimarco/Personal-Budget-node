@@ -75,5 +75,4 @@ const transferBudget = (arr, fromId, toId, instance) => {
 	}
 
 
-
 module.exports = { getAllEnvelopes, addEnvelope, getEnvelopeById, updateEnvelope, deleteEnvelope, transferBudget };
