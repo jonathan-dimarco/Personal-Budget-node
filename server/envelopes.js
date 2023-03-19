@@ -2,7 +2,7 @@ const envelopesRouter = require('express').Router();
 const envelopes = require("./db");
 
 const e = require('cors');
-const { getAllEnvelopes, addEnvelope, getEnvelopeById }= require('./controllers');
+const { getAllEnvelopes, addEnvelope, getEnvelopeById, updateEnvelope }= require('./controllers');
 
 
 
@@ -30,6 +30,14 @@ envelopesRouter.post("/", (req, res, next) => {
     res.send(newEnvelope);
 });
 
+envelopesRouter.put("/:id", (req, res, next) => {
+const updatedEnvelope = updateEnvelope(envelopes, req.params.id, req.body);
+if(updatedEnvelope) {
+    res.status(201).send(updatedEnvelope);
+} else {
+    res.sendStatus(500)
+}
+})
 
 
 
