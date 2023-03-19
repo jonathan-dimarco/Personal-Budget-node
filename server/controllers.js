@@ -55,5 +55,25 @@ const deleteEnvelope = (arr, id) => {
 
 }
 
+const transferBudget = (arr, fromId, toId, instance) => {
+  const { budget} = instance;
+		const originEnv = getEnvelopeById(arr, fromId);
+		const destinationEnv = getEnvelopeById(arr, toId);
 
-module.exports = { getAllEnvelopes, addEnvelope, getEnvelopeById, updateEnvelope, deleteEnvelope };
+    if (!originEnv || !destinationEnv) {
+      return  "Envelope Not Found";
+		}
+    
+		if (originEnv.budget < budget) {
+			return "Amount to transfer exceeds envelope budget funds"
+		}
+    else {
+		originEnv.budget -= budget;
+		destinationEnv.budget += budget;
+    return arr;
+    }
+	}
+
+
+
+module.exports = { getAllEnvelopes, addEnvelope, getEnvelopeById, updateEnvelope, deleteEnvelope, transferBudget };

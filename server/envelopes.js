@@ -2,7 +2,7 @@ const envelopesRouter = require('express').Router();
 const envelopes = require("./db");
 
 const e = require('cors');
-const { getAllEnvelopes, addEnvelope, getEnvelopeById, updateEnvelope, deleteEnvelope }= require('./controllers');
+const { getAllEnvelopes, addEnvelope, getEnvelopeById, updateEnvelope, deleteEnvelope, transferBudget }= require('./controllers');
 
 envelopesRouter.get('/', (req, res, next) => {
     const database = getAllEnvelopes();
@@ -47,6 +47,18 @@ envelopesRouter.delete("/:id", (req, res, next) => {
     }
 })
 
+envelopesRouter.put("/transfer/:from/:to", (req, res, next) => {
+    const transfer = transferBudget(envelopes, req.params.from, req.params.to, req.body);
+    if(transfer === "Envelope Not Found") {
+        res.status(404).send("Envelope Not Found");
+    }
+    if(transfer === "Amount to transfer exceeds envelope budget funds") {
+        res.status(400).send("Amount to transfer exceeds envelope budget funds");
+    }
+    else {
+        res.status(201).send(transfer);
+    }
+})
 
 
 
